@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root{
+    min-height: 100vh;
+  height: 100%;
+}
+body{
+  position: relative;
+  min-height: 100vh;
+}
