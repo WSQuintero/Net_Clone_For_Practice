@@ -29,6 +29,6 @@ position: absolute;
   .background {
 background-image: url("https://assets.nflxext.com/ffe/siteui/vlv3/530fc327-2ddb-4038-a3f0-2da2d9ccede1/6df01d4b-de02-4e92-9faa-159d4d5fa06d/CO-es-20230619-popsignuptwoweeks-perspective_alpha_website_large.jpg");
  background-size: 220%;
- height: 70vh;
+ height: 100vh;
 }
 }
