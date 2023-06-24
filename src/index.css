@@ -2,11 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-#root{
-    min-height: 100vh;
+@font-face {
+  font-family: "netflixFont";
+  src: url("fonts/NetflixSans-Bold.otf") format("otf"),
+    url("fonts/NetflixSans-Light.otf") format("otf");
+}
+#root {
+  min-height: 100vh;
   height: 100%;
 }
-body{
+body {
   position: relative;
   min-height: 100vh;
+  font-family: "netflixFont";
+  font-weight: 700;
 }
