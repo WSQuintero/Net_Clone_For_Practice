@@ -4,10 +4,9 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'netflix-bold': ['NetflixSans-Bold', 'sans-serif'],
-        'netflix-light': ['NetflixSans-Light', 'sans-serif'],
-        'netflix-medium': ['NetflixSans-Medium', 'sans-serif'],
-        'netflix-regular': ['NetflixSans-Regular', 'sans-serif']
+        'netflix-bold': ['./public/fonts/NetflixSans-Bold.otf'],
+        netflix: ['./public/fonts/NetflixSansBold.ttf'],
+        netflixBlack: ['./public/fonts/NetflixSansBlack.ttf']
       }
     }
   },

@@ -8,7 +8,7 @@ function Logo () {
       xmlns='http://www.w3.org/2000/svg'
       aria-hidden='true'
       role='img'
-      width='95px'
+      className='w-[95px] xl:w-[180px]'
     >
       <path
         fill='rgba(229, 9, 20, 1)'

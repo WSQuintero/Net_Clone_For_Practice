@@ -2,7 +2,7 @@ import React from 'react'
 
 function Main ({ children }) {
   return (
-    <main>{children}</main>
+    <main className='relative'>{children}</main>
   )
 }
 
