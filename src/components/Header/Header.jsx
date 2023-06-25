@@ -14,7 +14,6 @@ function Header () {
           </button>
         </div>
       </header>
-      <div className='gradient z-1'></div>
     </>
   )
 }
