@@ -156,8 +156,7 @@ function Landing () {
           </li>
           <li className='w-full  h-auto relative min-h-10'>
             <ButtonInformation title='¿Cuánto cuesta Netflix?'>
-              D <div className='background '></div>
-              isfruta Netflix en tu smartphone, tablet, smart TV, laptop o
+              Disfruta Netflix en tu smartphone, tablet, smart TV, laptop o
               dispositivo de streaming, todo por una tarifa plana mensual.
               Planes desde $ 16.900 hasta $ 38.900 al mes. Sin costos
               adicionales ni contratos.
