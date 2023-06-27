@@ -16,7 +16,12 @@ body {
   position: relative;
   min-height: 100vh;
   font-weight: 500;
-@apply font-netflix
+   position: relative;
+@apply font-netflix;
   
 }
 
+
+.fullCenter{
+  @apply flex flex-col justify-center items-center;
+}

@@ -2,7 +2,7 @@ import React from 'react'
 import { Lenguage } from '../Lenguage/Lenguage'
 import { Logo } from '../Logo/Logo'
 
-function Header () {
+function BeforeHeader () {
   return (
     <>
       <header className='flex w-full justify-between py-7 px-8 absolute xl:px-60 z-10'>
@@ -18,4 +18,4 @@ function Header () {
   )
 }
 
-export { Header }
+export { BeforeHeader }

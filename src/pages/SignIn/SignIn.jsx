@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Logo } from '../../components/Logo/Logo'
+// import { Logo } from '../../components/Logo/Logo'
 import { Gradient } from '../../components/Gradient/Gradient'
 import { Background } from '../../components/Background/Background'
 
@@ -11,7 +11,7 @@ function SignIn () {
       <Background />
       <Gradient />
       <div className='absolute top-0 left-0 p-5'>
-        <Logo />
+        {/* <Logo /> */}
       </div>
       <div className='absolute text-gray-100 bg-black/70 w-[350px] gap-5 min-h-[70vh] p-10 font-netflixBlack  flex flex-col justify-center items-center'>
         <h3 className='w-full text-start text-2xl'>Inicia sesión</h3>
