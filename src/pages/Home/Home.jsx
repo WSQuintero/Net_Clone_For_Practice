@@ -3,6 +3,7 @@ import { PlayIcon } from '../../components/PlayIcon/PlayIcon'
 import { InformationIcon } from '../../components/InformationIcon/InformationIcon'
 import './Home.css'
 import { Gradient } from '../../components/Gradient/Gradient'
+import { ImgSlider } from '../../components/ImgSlider/ImgSlider'
 
 function Home () {
   return (
@@ -34,6 +35,10 @@ function Home () {
             </button>
           </div>
         </div>
+      </section>
+      <section className=' pl-10 shadow-4xl -mb-px relative -top-10 flex flex-col gap-10'>
+        <ImgSlider title='Populares en Netflix' />
+        <ImgSlider title='Tendencias' />
       </section>
     </div>
   )
