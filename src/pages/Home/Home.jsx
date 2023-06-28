@@ -1,9 +1,9 @@
 import React from 'react'
 import { PlayIcon } from '../../components/PlayIcon/PlayIcon'
 import { InformationIcon } from '../../components/InformationIcon/InformationIcon'
-import './Home.css'
 import { Gradient } from '../../components/Gradient/Gradient'
 import { ImgSlider } from '../../components/ImgSlider/ImgSlider'
+import './Home.css'
 
 function Home () {
   return (
@@ -36,9 +36,15 @@ function Home () {
           </div>
         </div>
       </section>
-      <section className=' pl-10 shadow-4xl -mb-px relative -top-10 flex flex-col gap-10'>
-        <ImgSlider title='Populares en Netflix' />
-        <ImgSlider title='Tendencias' />
+      <section className=' pl-10 shadow-4xl -mb-px relative -top-[60px] flex flex-col gap-10'>
+        <ImgSlider
+          title='Populares en Netflix'
+          url='https://api.themoviedb.org/3/movie/popular'
+        />
+        <ImgSlider
+          title='Tendencias'
+          url='https://api.themoviedb.org/3/movie/top_rated'
+        />
       </section>
     </div>
   )

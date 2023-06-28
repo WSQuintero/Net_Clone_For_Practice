@@ -1,19 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { useFetchData } from '../../customHooks/useFetchData/useFetchData'
 
-function ImgSlider ({ title }) {
+function ImgSlider ({ title, url }) {
   const elementRef = useRef(null)
   const [widthContainer, setWidthContainer] = useState()
-  const [data, setData] = useState(null)
+  const { data } = useFetchData(url)
 
   useEffect(() => {
     const { width } = elementRef.current.getBoundingClientRect()
     setWidthContainer(width)
-
-    fetch(
-      'https://api.themoviedb.org/3/movie/popular?api_key=b3fc6649fc92621542cc6e31b7975930'
-    )
-      .then((dat) => dat.json())
-      .then((dat) => setData(dat))
   }, [])
 
   const handleScrollLeft = () => {
@@ -27,7 +22,7 @@ function ImgSlider ({ title }) {
   return (
     <div>
       <h2 className='text-gray-100'>{title}</h2>
-      <div className='relative p-0'>
+      <div className='relative p-0 mt-5'>
         <div
           className='flex gap-1 scroll-smooth w-full items-center text-white font-light h-[150px] overflow-y-hidden overflow-x-hidden relative transition-all'
           ref={elementRef}

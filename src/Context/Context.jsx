@@ -11,6 +11,7 @@ function ContextProvider ({ children }) {
     showMenuLenguages: () => dispatch({ type: 'SHOW_MENU_LENGUAGE' }),
     hideMenuLenguages: () => dispatch({ type: 'HIDE_MENU_LENGUAGE' })
   }
+
   const listeningWindowInnerWidth = () => {
     if (window.innerWidth > 600) changeLenguages.showLenguages()
     window.addEventListener('resize', () => {
