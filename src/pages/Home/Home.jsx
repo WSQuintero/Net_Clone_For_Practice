@@ -4,10 +4,16 @@ import { InformationIcon } from '../../components/InformationIcon/InformationIco
 import { Gradient } from '../../components/Gradient/Gradient'
 import { ImgSlider } from '../../components/ImgSlider/ImgSlider'
 import './Home.css'
+import { useFetchData } from '../../customHooks/useFetchData/useFetchData'
 
 function Home () {
+  const { data } = useFetchData(
+    'https://api.themoviedb.org/3/genre/movie/list'
+  )
+
   return (
     <div>
+
       <section className='background relative flex flex-col justify-center h-[100vh]'>
         <div className='h-[100vh] opacity-[20%] '>
           <Gradient />
@@ -45,6 +51,15 @@ function Home () {
           title='Tendencias'
           url='https://api.themoviedb.org/3/movie/top_rated'
         />
+        {data?.genres?.map((genre) => (
+          <ImgSlider
+            title={genre.name}
+            url={' https://api.themoviedb.org/3/discover/movie'}
+            // options={options}
+            genres={`&with_genres=${genre.id}`}
+            key={genre.id}
+          />
+        ))}
       </section>
     </div>
   )

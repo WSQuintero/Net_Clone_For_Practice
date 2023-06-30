@@ -13,8 +13,9 @@ function App () {
     <>
       {/* <BeforeHeader /> */}
       {/* debe tener la condición de abrirse solo en ciertas páginas */}
-        <AfterHeader />
+      <AfterHeader />
       <Main>
+
         <Home />
         <Landing />
         <SignIn />
