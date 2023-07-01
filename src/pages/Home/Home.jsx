@@ -7,13 +7,10 @@ import './Home.css'
 import { useFetchData } from '../../customHooks/useFetchData/useFetchData'
 
 function Home () {
-  const { data } = useFetchData(
-    'https://api.themoviedb.org/3/genre/movie/list'
-  )
+  const { data } = useFetchData('https://api.themoviedb.org/3/genre/movie/list')
 
   return (
-    <div>
-
+    <>
       <section className='background relative flex flex-col justify-center h-[100vh]'>
         <div className='h-[100vh] opacity-[20%] '>
           <Gradient />
@@ -42,26 +39,30 @@ function Home () {
           </div>
         </div>
       </section>
-      <section className=' pl-10 shadow-4xl -mb-px relative -top-[60px] flex flex-col gap-10'>
-        <ImgSlider
-          title='Populares en Netflix'
-          url='https://api.themoviedb.org/3/movie/popular'
-        />
-        <ImgSlider
-          title='Tendencias'
-          url='https://api.themoviedb.org/3/movie/top_rated'
-        />
-        {data?.genres?.map((genre) => (
+      <section className=' pl-10 shadow-4xl -mb-px relative -top-[60px] flex flex-col  h-auto'>
+        <div className='h-auto'>
           <ImgSlider
-            title={genre.name}
-            url={' https://api.themoviedb.org/3/discover/movie'}
-            // options={options}
-            genres={`&with_genres=${genre.id}`}
-            key={genre.id}
+            title='Populares en Netflix'
+            url='https://api.themoviedb.org/3/movie/popular'
           />
+        </div>
+        <div className='mt-10'>
+          <ImgSlider
+            title='Tendencias'
+            url='https://api.themoviedb.org/3/movie/top_rated'
+          />
+        </div>
+        {data?.genres?.map((genre) => (
+          <div className='mt-10' key={genre.id}>
+            <ImgSlider
+              title={genre.name}
+              url={' https://api.themoviedb.org/3/discover/movie'}
+              genres={`&with_genres=${genre.id}`}
+            />
+          </div>
         ))}
       </section>
-    </div>
+    </>
   )
 }
 

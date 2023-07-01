@@ -1,6 +1,8 @@
 import React from 'react'
+import { useNavigate } from 'react-router'
 
 function Logo () {
+  const navigate = useNavigate()
   return (
     <svg
       viewBox='0 0 111 30'
@@ -9,6 +11,7 @@ function Logo () {
       aria-hidden='true'
       role='img'
       className='w-[80px] xl:w-[95px] cursor-pointer'
+      onClick={() => navigate('/')}
     >
       <path
         fill='rgba(229, 9, 20, 1)'

@@ -55,29 +55,31 @@ function ImgSlider ({ title, url, options, genres }) {
   return (
     <div>
       <h2 className='text-gray-100'>{title}</h2>
-      <div className='relative p-0 mt-5'>
+      <div className='relative p-0 mt-5 '>
         <div
-          className='flex gap-1 scroll-smooth w-full items-center text-white font-light h-[150px] overflow-y-hidden overflow-x-hidden relative transition-all'
+          className='flex gap-1 scroll-smooth w-full items-center text-white font-light h-auto   overflow-x-hidden relative '
           ref={elementRef}
         >
           {data?.results?.map((ar, index) => (
-            <ImgMovie ar={ar} imgObserved={imgObserved} key={ar.id} />
+            <ImgMovie
+              ar={ar}
+              imgObserved={imgObserved}
+              key={ar.id}
+            />
           ))}
         </div>
-        <div className='absolute top-0 w-full justify-between flex items-center h-full text-gray-100 text-2xl opacity-0 transition-all hover:opacity-100'>
-          <button
-            className='bg-black/50 h-full hover:backdrop-blur-sm hover:scale-x-[1.3] transition-all duration-300 px-3 justify-start '
-            onClick={handleScrollLeft}
-          >
-            {'<'}
-          </button>
-          <button
-            className='bg-black/30 h-full hover:backdrop-blur-sm hover:scale-x-[1.3] transition-all duration-300 px-3 justify-end  '
-            onClick={handleScrollRight}
-          >
-            {'>'}
-          </button>
-        </div>
+        <button
+          className='z-50 text-white text-xl absolute top-0 bg-black/50 h-full hover:backdrop-blur-sm hover:scale-x-[1.3] transition-all duration-300 px-3 justify-start '
+          onClick={handleScrollLeft}
+        >
+          {'<'}
+        </button>
+        <button
+          className='z-50 text-white text-xl absolute top-0 right-0 bg-black/30 h-full hover:backdrop-blur-sm hover:scale-x-[1.3] transition-all duration-300 px-3 justify-end  '
+          onClick={handleScrollRight}
+        >
+          {'>'}
+        </button>
       </div>
     </div>
   )
