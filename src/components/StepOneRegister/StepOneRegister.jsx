@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { NextButton } from '../NextButton/NextButton'
 
-function StepOneRegister () {
+function StepOneRegister ({ setSteps, steps, setError }) {
+  const email = useRef(null)
+  const password = useRef(null)
+
   return (
     <form className=' min-w-[350px] max-w-[420px] p-2 flex flex-col fullCenter'>
       <span className='text-sm'>
@@ -26,14 +29,22 @@ function StepOneRegister () {
           type='email'
           placeholder='Email'
           className='h-[50px] w-full px-3 border border-gray-600 text-gray-500'
+          ref={email}
         />
         <input
           type='password'
           placeholder='Agrega una contraseña'
           className='h-[50px] w-full px-3 border border-gray-600'
+          ref={password}
         />
       </div>
-      <NextButton />
+      <NextButton
+        password={password}
+        email={email}
+        setSteps={setSteps}
+        steps={steps}
+        setError={setError}
+      />
     </form>
   )
 }

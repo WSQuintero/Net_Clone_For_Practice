@@ -1,8 +1,8 @@
 import React from 'react'
-import { NextButton } from '../NextButton/NextButton'
 import { CheckRed } from '../CheckRed/CheckRed'
+import { FinalNextButton } from '../FinalNextButton/FinalNextButton'
 
-function StepTwoRegister () {
+function StepTwoRegister ({ steps }) {
   return (
     <div className=' min-w-[350px]  max-w-[420px] flex flex-col items-center p-2'>
       <span className='text-sm'>
@@ -24,7 +24,7 @@ function StepTwoRegister () {
         </li>
       </ul>
       <div className='mt-10 w-full'>
-        <NextButton />
+        <FinalNextButton />
       </div>
     </div>
   )
