@@ -8,13 +8,11 @@ function ImgMovie ({ ar, imgObserved }) {
   return (
     <>
       <div className='h-full w-[230px] shrink-0 relative justify-center items-center transition-all cursor-pointer'>
-        {!isLoad && (
-          <div
-            className={
-              'animate-pulse flex space-x-4 bg-gray-300 h-full w-[230px] shrink-0 absolute'
-            }
-          />
-        )}
+        <div
+          className={`animate-pulse flex space-x-4 bg-gray-300 h-full w-[230px] shrink-0 absolute ${
+            isLoad && 'hidden'
+          } `}
+        />
         {ar.backdrop_path && (
           <img
             className={'rounded-md h-full transition-opacity '}
@@ -33,11 +31,9 @@ function ImgMovie ({ ar, imgObserved }) {
             }}
           />
         )}
+
         {movieDetail && (
-          <MovieDetail
-            img={ar.backdrop_path}
-            setMovieDetail={setMovieDetail}
-          />
+          <MovieDetail img={ar.backdrop_path} setMovieDetail={setMovieDetail} />
         )}
       </div>
     </>

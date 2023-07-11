@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 
 function FinalNextButton ({ setSteps, steps, email, password }) {
   const navigate = useNavigate()
+  
   const sendForm = (event) => {
     navigate('/home')
   }

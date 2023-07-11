@@ -1,6 +1,10 @@
 import React, { createContext, useEffect, useReducer, useState } from 'react'
 import { initialState, reducer } from '../reducer/reducer'
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword
+} from 'firebase/auth'
 import { app } from '../services/firebase'
 
 const Context = createContext()
@@ -61,6 +65,55 @@ function ContextProvider ({ children }) {
       })
   }
 
+  const signInFirebase = ({ email, password }) => {
+    const auth = getAuth(app)
+
+    return signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user
+        return user
+      })
+      .catch((error) => {
+        const errorCode = error.code
+        const errorMessage = error.message
+        errorMessage.includes('auth/user-not-found') && setError('El usuario no existe')
+        errorMessage.includes('auth/missing-password') && setError('Por favor digita la contraseña')
+        errorMessage.includes('auth/invalid-email') && setError('Usuario inválido')
+
+        return {
+          errorCode,
+          errorMessage
+        }
+      })
+  }
+  const easyLoad = ({ imgObserved, elementRef }) => {
+    if (imgObserved.current) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const imageElement = entry.target
+
+              imageElement.src = imageElement.dataset.src
+              observer.unobserve(imageElement)
+            }
+          })
+        },
+        { threshold: 0.5 }
+      )
+
+      const imageElements = Array.from(elementRef.current.querySelectorAll('img'))
+
+      imageElements.forEach((imageElement) => {
+        observer.observe(imageElement)
+      })
+
+      return () => {
+        observer.disconnect()
+      }
+    }
+  }
+
   useEffect(() => {
     setTimeout(() => {
       setError('')
@@ -76,7 +129,9 @@ function ContextProvider ({ children }) {
         isClickOption,
         signUpFirebase,
         error,
-        setError
+        setError,
+        signInFirebase,
+        easyLoad
       }}
     >
       {children}
