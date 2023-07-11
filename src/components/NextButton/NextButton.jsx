@@ -1,17 +1,22 @@
 import React, { useContext } from 'react'
 import { Context } from '../../Context/Context'
 
-function NextButton ({ setSteps, email, password }) {
-  const { signUpFirebase } = useContext(Context)
+function NextButton ({ setSteps, email, password, nameUser }) {
+  const { signUpFirebase, addCollectionInDb } = useContext(Context)
 
   const sendForm = (event) => {
     event.preventDefault()
-    signUpFirebase({
-      email: email.current.value,
-      password: password.current.value
-    }).then((user) => {
-      return user.errorCode && user.errorMessage ? '' : setSteps('stepTwo')
-    })
+    // signUpFirebase({
+    //   email: email.current.value,
+    //   password: password.current.value
+    // }).then((user) => {
+    //   return user.errorCode && user.errorMessage ? '' : setSteps('stepTwo')
+    // })
+
+    addCollectionInDb({
+      nameUser: nameUser.current.value,
+      email: email.current.value
+    }, 'users')
   }
 
   return (

@@ -5,7 +5,8 @@ import {
   getAuth,
   signInWithEmailAndPassword
 } from 'firebase/auth'
-import { app } from '../services/firebase'
+import { app, db } from '../services/firebase'
+import { collection, addDoc } from 'firebase/firestore'
 
 const Context = createContext()
 
@@ -113,6 +114,14 @@ function ContextProvider ({ children }) {
       }
     }
   }
+  const addCollectionInDb = async (object, name) => {
+    try {
+      const docRef = await addDoc(collection(db, name), object)
+      console.log('Document written with ID: ', docRef.id)
+    } catch (e) {
+      console.error('Error adding document: ', e)
+    }
+  }
 
   useEffect(() => {
     setTimeout(() => {
@@ -131,7 +140,8 @@ function ContextProvider ({ children }) {
         error,
         setError,
         signInFirebase,
-        easyLoad
+        easyLoad,
+        addCollectionInDb
       }}
     >
       {children}

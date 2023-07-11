@@ -4,6 +4,7 @@ import { NextButton } from '../NextButton/NextButton'
 function StepOneRegister ({ setSteps, steps, setError }) {
   const email = useRef(null)
   const password = useRef(null)
+  const nameUser = useRef(null)
 
   return (
     <form className=' min-w-[350px] max-w-[420px] p-2 flex flex-col fullCenter'>
@@ -24,6 +25,7 @@ function StepOneRegister ({ setSteps, steps, setError }) {
           type='text'
           placeholder='Nombre'
           className='h-[50px] w-full px-3 border border-gray-600 text-gray-500'
+          ref={nameUser}
         />
         <input
           type='email'
@@ -41,6 +43,7 @@ function StepOneRegister ({ setSteps, steps, setError }) {
       <NextButton
         password={password}
         email={email}
+        nameUser={nameUser}
         setSteps={setSteps}
         steps={steps}
         setError={setError}
