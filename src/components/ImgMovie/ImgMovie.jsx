@@ -32,9 +32,9 @@ function ImgMovie ({ ar, imgObserved }) {
           />
         )}
 
-        {movieDetail && (
+        {/* {movieDetail && (
           <MovieDetail img={ar.backdrop_path} setMovieDetail={setMovieDetail} />
-        )}
+        )} */}
       </div>
     </>
   )
