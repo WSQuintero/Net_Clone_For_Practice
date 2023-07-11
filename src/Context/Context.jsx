@@ -6,11 +6,13 @@ import {
   signInWithEmailAndPassword
 } from 'firebase/auth'
 import { app, db } from '../services/firebase'
-import { collection, addDoc } from 'firebase/firestore'
+import { collection, addDoc, doc, getDoc, setDoc } from 'firebase/firestore'
+import { useNavigate } from 'react-router'
 
 const Context = createContext()
 
 function ContextProvider ({ children }) {
+  const navigate = useNavigate()
   const [state, dispatch] = useReducer(reducer, initialState)
   const [error, setError] = useState('')
   const changeLenguages = {
@@ -114,15 +116,27 @@ function ContextProvider ({ children }) {
       }
     }
   }
-  const addCollectionInDb = async (object, name) => {
+  const addCollectionInDb = async (object, name, id) => {
     try {
-      const docRef = await addDoc(collection(db, name), object)
-      console.log('Document written with ID: ', docRef.id)
+      await setDoc(doc(db, name, id), object)
+      console.log('Document written')
     } catch (e) {
       console.error('Error adding document: ', e)
     }
   }
 
+  const searchUserInDb = async (users, user) => {
+    const docRef = doc(db, users, user)
+    const docSnap = await getDoc(docRef)
+    if (docSnap.exists()) {
+      // console.log('Document data:', docSnap.data())
+      navigate('/sign-in')
+    } else {
+      // docSnap.data() will be undefined in this case
+      // console.log('No such document!')
+      navigate('/sign-up')
+    }
+  }
   useEffect(() => {
     setTimeout(() => {
       setError('')
@@ -141,7 +155,8 @@ function ContextProvider ({ children }) {
         setError,
         signInFirebase,
         easyLoad,
-        addCollectionInDb
+        addCollectionInDb,
+        searchUserInDb
       }}
     >
       {children}

@@ -6,6 +6,7 @@ function NextButton ({ setSteps, email, password, nameUser }) {
 
   const sendForm = (event) => {
     event.preventDefault()
+
     // signUpFirebase({
     //   email: email.current.value,
     //   password: password.current.value
@@ -13,10 +14,14 @@ function NextButton ({ setSteps, email, password, nameUser }) {
     //   return user.errorCode && user.errorMessage ? '' : setSteps('stepTwo')
     // })
 
-    addCollectionInDb({
-      nameUser: nameUser.current.value,
-      email: email.current.value
-    }, 'users')
+    addCollectionInDb(
+      {
+        nameUser: nameUser.current.value,
+        email: email.current.value
+      },
+      'users',
+      String(email.current.value)
+    )
   }
 
   return (
