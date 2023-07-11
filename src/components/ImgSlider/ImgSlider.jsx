@@ -11,6 +11,7 @@ function ImgSlider ({ title, url, options, genres }) {
   const { data, isLoad } = useFetchData(url, options, genres)
   const imgObserved = useRef()
   const temp = Array(10).fill('*')
+
   useEffect(() => {
     const { width } = elementRef.current.getBoundingClientRect()
     setWidthContainer(width)
@@ -33,7 +34,7 @@ function ImgSlider ({ title, url, options, genres }) {
       <h2 className='text-gray-100'>{title}</h2>
       <div className='relative p-0 mt-5 '>
         <div
-          className='flex gap-1 scroll-smooth w-full items-center text-white font-light overflow-x-hidden relative h-[160px] '
+          className='flex gap-1 scroll-smooth w-full items-center text-white font-light overflow-x-hidden relative h-[130px] '
           ref={elementRef}
         >
           {isLoad
