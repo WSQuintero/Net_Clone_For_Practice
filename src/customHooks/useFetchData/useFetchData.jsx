@@ -12,6 +12,8 @@ const useFetchData = (url, options, genres = '') => {
       .then((data) => setData(data))
       .catch((error) => console.log(error))
       .finally(setIsLoad(true))
+
+    return setData(null)
   }, [])
 
   return {

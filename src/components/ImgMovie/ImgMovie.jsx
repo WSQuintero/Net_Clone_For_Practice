@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
-import { MovieDetail } from '../MovieDetail/MovieDetail'
+import React, { useContext, useState } from 'react'
+import { useNavigate } from 'react-router'
+import { Context } from '../../Context/Context'
 
 function ImgMovie ({ ar, imgObserved }) {
+  const { setActualMovie } = useContext(Context)
   const [isLoad, setIsLoad] = useState(false)
-  const [movieDetail, setMovieDetail] = useState(false)
+  const navigate = useNavigate()
 
   return (
     <>
@@ -23,12 +25,14 @@ function ImgMovie ({ ar, imgObserved }) {
             onLoad={() => {
               setIsLoad(true)
             }}
-            onMouseOver={() => {
-              setMovieDetail(true)
-            }}
-            onMouseLeave={() => {
-              setMovieDetail(false)
-            }}
+
+            onClick={() => {
+              setActualMovie(ar)
+              navigate(`/movie-detail/${ar.title}`)
+              sessionStorage.setItem('actualMovie', JSON.stringify(ar))
+              window.scrollTo(0, 0)
+            }
+            }
           />
         )}
 

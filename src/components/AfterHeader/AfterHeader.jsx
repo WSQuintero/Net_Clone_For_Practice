@@ -9,14 +9,7 @@ function AfterHeader () {
     <header className='flex w-full py-5 px-20 gradient text-gray-100 items-center gap-5 absolute z-50'>
       <Logo />
       <nav className='w-full pl-4 flex justify-between text-sm items-center container '>
-        <ul className='flex w-auto justify-between gap-2'>
-          <li>Inicio</li>
-          <li>Series</li>
-          <li>Peliculas</li>
-          <li>Novedades populares</li>
-          <li>Mi lista</li>
-          <li>Explora por idiomas</li>
-        </ul>
+        <div></div>
         <ul className='flex gap-5 pr-5 items-center '>
           <li>
             <SearchIcon />

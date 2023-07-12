@@ -6,7 +6,7 @@ import {
   signInWithEmailAndPassword
 } from 'firebase/auth'
 import { app, db } from '../services/firebase'
-import { collection, addDoc, doc, getDoc, setDoc } from 'firebase/firestore'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
 import { useNavigate } from 'react-router'
 
 const Context = createContext()
@@ -15,6 +15,15 @@ function ContextProvider ({ children }) {
   const navigate = useNavigate()
   const [state, dispatch] = useReducer(reducer, initialState)
   const [error, setError] = useState('')
+  const [actualMovie, setActualMovie] = useState(
+    JSON.parse(
+
+      sessionStorage.getItem('actualMovie') || null
+    )
+  )
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    sessionStorage.getItem('isAuthenticated') || false
+  )
   const changeLenguages = {
     hideLenguages: () => dispatch({ type: 'HIDE_LENGUAGE' }),
     showLenguages: () => dispatch({ type: 'SHOW_LENGUAGE' }),
@@ -143,6 +152,10 @@ function ContextProvider ({ children }) {
     }, 2000)
   }, [error])
 
+  useEffect(() => {
+    return setActualMovie(null)
+  }, [])
+
   return (
     <Context.Provider
       value={{
@@ -156,7 +169,11 @@ function ContextProvider ({ children }) {
         signInFirebase,
         easyLoad,
         addCollectionInDb,
-        searchUserInDb
+        searchUserInDb,
+        actualMovie,
+        setActualMovie,
+        isAuthenticated,
+        setIsAuthenticated
       }}
     >
       {children}

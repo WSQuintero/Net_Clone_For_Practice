@@ -7,12 +7,12 @@ function NextButton ({ setSteps, email, password, nameUser }) {
   const sendForm = (event) => {
     event.preventDefault()
 
-    // signUpFirebase({
-    //   email: email.current.value,
-    //   password: password.current.value
-    // }).then((user) => {
-    //   return user.errorCode && user.errorMessage ? '' : setSteps('stepTwo')
-    // })
+    signUpFirebase({
+      email: email.current.value,
+      password: password.current.value
+    }).then((user) => {
+      return user.errorCode && user.errorMessage ? '' : setSteps('stepTwo')
+    })
 
     addCollectionInDb(
       {
