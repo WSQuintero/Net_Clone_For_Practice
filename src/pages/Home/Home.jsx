@@ -11,41 +11,58 @@ function Home () {
   const [videos, setVideos] = useState('')
   const { data } = useFetchData('https://api.themoviedb.org/3/genre/movie/list')
   // const movies = useFetchData(
-  //   'https://api.themoviedb.org/3/movie/popular'
+  //   'https://api.themoviedb.org/3/movie/popular'••••••
 
   // )
 
   useEffect(() => {
+    const controller = new AbortController()
+    const signal = controller.signal
+
     fetch(
-      'https://api.themoviedb.org/3/movie/popular?api_key=b3fc6649fc92621542cc6e31b7975930'
-    ).then((data) => data.json())
+      'https://api.themoviedb.org/3/movie/popular?api_key=b3fc6649fc92621542cc6e31b7975930',
+      { signal }
+    )
+      .then((response) => response.json())
       .then((movies) => setMovies(movies))
+
+    return () => {
+      controller.abort() // Cancelar la solicitud cuando se desmonte el componente
+    }
   }, [])
 
   useEffect(() => {
     if (movies.results) {
-      const id = movies?.results[
-        Math.floor(Math.random() * movies?.results?.length) + 1
-      ].id
+      const controller = new AbortController()
+      const signal = controller.signal
+
+      const id =
+        movies.results[Math.floor(Math.random() * movies.results.length) + 1].id
 
       fetch(
-        `https://api.themoviedb.org/3/movie/${id}/videos?api_key=b3fc6649fc92621542cc6e31b7975930`
+        `https://api.themoviedb.org/3/movie/${id}/videos?api_key=b3fc6649fc92621542cc6e31b7975930`,
+        { signal }
       )
         .then((response) => response.json())
         .then((data) => setVideos(data.results))
+
+      return () => {
+        controller.abort() // Cancelar la solicitud cuando se actualice el estado "movies"
+      }
     }
   }, [movies])
 
-  console.log()
   return (
     <>
       <section className=' relative flex flex-col justify-center h-[100vh]'>
         <div className='relative h-0 pb-[56.25%] overflow-hidden'>
           <iframe
-            src={`https://www.youtube.com/embed/${
-              videos[Math.floor(Math.random() * videos?.length) + 1]
-                ?.key
-            }?autoplay=1`}
+            src={
+              videos[Math.floor(Math.random() * videos?.length) + 1]?.key &&
+              `https://www.youtube.com/embed/${
+                videos[Math.floor(Math.random() * videos?.length) + 1]?.key
+              }?autoplay=1`
+            }
             className='absolute top-0 left-0 w-full h-full'
             autoPlay
           />

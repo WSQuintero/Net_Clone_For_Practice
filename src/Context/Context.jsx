@@ -16,10 +16,7 @@ function ContextProvider ({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState)
   const [error, setError] = useState('')
   const [actualMovie, setActualMovie] = useState(
-    JSON.parse(
-
-      sessionStorage.getItem('actualMovie') || null
-    )
+    JSON.parse(sessionStorage.getItem('actualMovie')) || null
   )
   const [isAuthenticated, setIsAuthenticated] = useState(
     sessionStorage.getItem('isAuthenticated') || false
