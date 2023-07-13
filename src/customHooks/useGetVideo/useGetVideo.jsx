@@ -29,7 +29,7 @@ function useGetVideo () {
         movies.results[Math.floor(Math.random() * movies.results.length) + 1].id
 
       fetch(
-        `https://api.themoviedb.org/3/movie/${id}/videos?api_key=b3fc6649fc92621542cc6e31b7975930`,
+        `https://api.themoviedb.org/3/movie/${id}/videos?api_key=${apiKey}`,
         { signal }
       )
         .then((response) => response.json())
