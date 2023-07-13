@@ -3,15 +3,15 @@ import { useEffect, useState } from 'react'
 function useGetVideo () {
   const [movies, setMovies] = useState('')
   const [videos, setVideos] = useState('')
+  const apiKey = import.meta.env.VITE_API_KEY_MOVIE
 
   useEffect(() => {
     const controller = new AbortController()
     const signal = controller.signal
 
-    fetch(
-      'https://api.themoviedb.org/3/movie/popular?api_key=b3fc6649fc92621542cc6e31b7975930',
-      { signal }
-    )
+    fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`, {
+      signal
+    })
       .then((response) => response.json())
       .then((movies) => setMovies(movies))
 
