@@ -6,10 +6,7 @@ function Logo () {
   return (
     <svg
       viewBox='0 0 111 30'
-      version='1.1'
-      xmlns='http://www.w3.org/2000/svg'
       aria-hidden='true'
-      role='img'
       className='w-[80px] xl:w-[95px] cursor-pointer'
       onClick={() => navigate('/')}
     >

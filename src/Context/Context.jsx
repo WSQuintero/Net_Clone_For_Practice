@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useReducer, useState } from 'react'
+import React, { createContext, useEffect, useReducer } from 'react'
 import { initialState, reducer } from '../reducer/reducer'
 import {
   createUserWithEmailAndPassword,
@@ -14,19 +14,16 @@ const Context = createContext()
 function ContextProvider ({ children }) {
   const navigate = useNavigate()
   const [state, dispatch] = useReducer(reducer, initialState)
-  const [error, setError] = useState('')
-  const [actualMovie, setActualMovie] = useState(
-    JSON.parse(sessionStorage.getItem('actualMovie')) || null
-  )
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    sessionStorage.getItem('isAuthenticated') || false
-  )
   const changeLenguages = {
     hideLenguages: () => dispatch({ type: 'HIDE_LENGUAGE' }),
     showLenguages: () => dispatch({ type: 'SHOW_LENGUAGE' }),
     showMenuLenguages: () => dispatch({ type: 'SHOW_MENU_LENGUAGE' }),
     hideMenuLenguages: () => dispatch({ type: 'HIDE_MENU_LENGUAGE' })
   }
+  const setIsAuthenticated = () => dispatch({ type: 'SET_USER_AUTHENTICATED' })
+  const setActualMovie = (value) => dispatch({ type: 'SET_ACTUAL_MOVIE', payload: value })
+  const setErrorMessage = (value) => dispatch({ type: 'SET_ERROR_MESSAGE', payload: value })
+
   const listeningWindowInnerWidth = () => {
     if (window.innerWidth > 600) changeLenguages.showLenguages()
     window.addEventListener('resize', () => {
@@ -51,8 +48,6 @@ function ContextProvider ({ children }) {
       })
     }
   }
-  clickToWindow()
-
   const signUpFirebase = ({ email, password }) => {
     const auth = getAuth(app)
 
@@ -65,7 +60,7 @@ function ContextProvider ({ children }) {
         const errorCode = error.code
         const errorMessage = error.message
         if (errorMessage.includes('email-already-in-use')) {
-          setError('EL correo electrònico ya se encuentra registrado')
+          setErrorMessage('EL correo electrònico ya se encuentra registrado')
         }
         return {
           errorCode,
@@ -73,7 +68,6 @@ function ContextProvider ({ children }) {
         }
       })
   }
-
   const signInFirebase = ({ email, password }) => {
     const auth = getAuth(app)
 
@@ -85,9 +79,12 @@ function ContextProvider ({ children }) {
       .catch((error) => {
         const errorCode = error.code
         const errorMessage = error.message
-        errorMessage.includes('auth/user-not-found') && setError('El usuario no existe')
-        errorMessage.includes('auth/missing-password') && setError('Por favor digita la contraseña')
-        errorMessage.includes('auth/invalid-email') && setError('Usuario inválido')
+        errorMessage.includes('auth/user-not-found') && setErrorMessage('El usuario no existe')
+        errorMessage.includes('auth/missing-password') && setErrorMessage('Por favor digita la contraseña')
+        errorMessage.includes('auth/invalid-email') && setErrorMessage('Usuario inválido')
+        errorMessage.includes('auth/wrong-password') && setErrorMessage('Contraseña incorrecta')
+
+        console.log(errorMessage)
 
         return {
           errorCode,
@@ -130,7 +127,6 @@ function ContextProvider ({ children }) {
       console.error('Error adding document: ', e)
     }
   }
-
   const searchUserInDb = async (users, user) => {
     const docRef = doc(db, users, user)
     const docSnap = await getDoc(docRef)
@@ -143,15 +139,12 @@ function ContextProvider ({ children }) {
       navigate('/sign-up')
     }
   }
-  useEffect(() => {
-    setTimeout(() => {
-      setError('')
-    }, 2000)
-  }, [error])
 
   useEffect(() => {
-    return setActualMovie(null)
-  }, [])
+    setTimeout(() => {
+      setErrorMessage('')
+    }, 2000)
+  }, [state.error])
 
   return (
     <Context.Provider
@@ -161,16 +154,14 @@ function ContextProvider ({ children }) {
         listeningWindowInnerWidth,
         isClickOption,
         signUpFirebase,
-        error,
-        setError,
+        setErrorMessage,
         signInFirebase,
         easyLoad,
         addCollectionInDb,
         searchUserInDb,
-        actualMovie,
         setActualMovie,
-        isAuthenticated,
-        setIsAuthenticated
+        setIsAuthenticated,
+        clickToWindow
       }}
     >
       {children}

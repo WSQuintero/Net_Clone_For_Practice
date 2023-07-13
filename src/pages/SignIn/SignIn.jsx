@@ -6,7 +6,7 @@ import { Context } from '../../Context/Context'
 import { NavLink, useNavigate } from 'react-router-dom'
 
 function SignIn () {
-  const { signInFirebase, error, setIsAuthenticated } = useContext(Context)
+  const { signInFirebase, state: { error }, setIsAuthenticated } = useContext(Context)
   const [informationCaptcha, setInformationCaptcha] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -14,7 +14,13 @@ function SignIn () {
 
   const signIn = (event) => {
     event.preventDefault()
-    signInFirebase({ email, password }).then((user) => { if (user.accessToken) { navigate('/home'); setIsAuthenticated(true); sessionStorage.setItem('isAuthenticated', 'true') } })
+    signInFirebase({ email, password }).then((user) => {
+      if (user.accessToken) {
+        navigate('/home')
+        setIsAuthenticated()
+        sessionStorage.setItem('isAuthenticated', 'true')
+      }
+    })
   }
 
   return (

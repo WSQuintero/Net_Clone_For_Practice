@@ -7,11 +7,11 @@ import './imgSlider.css'
 function ImgSlider ({ title, url, options, genres }) {
   const { easyLoad } = useContext(Context)
   const elementRef = useRef(null)
-  const imgObserved = useRef()
+  const imgObserved = useRef(null)
   const [widthContainer, setWidthContainer] = useState()
+  const [showButtons, setShowButtons] = useState(false)
   const { data, isLoad } = useFetchData(url, options, genres)
   const temp = Array(10).fill('*')
-  const [showButtons, setShowButtons] = useState(false)
 
   useEffect(() => {
     const { width } = elementRef.current.getBoundingClientRect()
@@ -46,7 +46,7 @@ function ImgSlider ({ title, url, options, genres }) {
           onMouseLeave={hideHover}
         >
           {isLoad
-            ? data?.results?.map((ar, index) => (
+            ? data?.results?.map((ar) => (
                 <ImgMovie ar={ar} imgObserved={imgObserved} key={ar.id} />
             ))
             : temp.map((element, index) => (

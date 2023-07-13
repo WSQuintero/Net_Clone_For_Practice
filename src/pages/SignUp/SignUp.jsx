@@ -5,7 +5,7 @@ import { Context } from '../../Context/Context'
 
 function SignUp () {
   const [steps, setSteps] = useState('stepOne')
-  const { error } = useContext(Context)
+  const { state: { error } } = useContext(Context)
 
   return (
     <div className='w-full bg-gray-100 h-[100vh] fullCenter '>
@@ -19,7 +19,7 @@ function SignUp () {
         : (
             steps === 'stepTwo' && <StepTwoRegister />
           )}
-      {error !== '' && <span className='text-red-500 font-bold text-lg'>{error}</span>}
+      {error !== '' && <span className='text-red-500 font-bold text-lg text-center'>{error}</span>}
     </div>
   )
 }

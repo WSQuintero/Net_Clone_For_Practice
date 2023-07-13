@@ -8,14 +8,16 @@ import { Background } from '../../components/Background/Background'
 import './Landing.css'
 
 function Landing () {
-  const { state, listeningWindowInnerWidth } = useContext(Context)
+  const { state, listeningWindowInnerWidth, clickToWindow } = useContext(Context)
 
   useEffect(() => listeningWindowInnerWidth(), [state.lenguage])
-
+  clickToWindow()
+  const title = ' lg:mt-0 text-3xl sm:text-5xl  text-center sm:text-center  text-gray-100 sm:pr-6'
+  const parraf = 'mt-10 text-sm sm:text-lg text-center  lg:text-start  py-5 w-full'
   return (
     <>
-    <Background/>
-      <Gradient/>
+      <Background />
+      <Gradient />
       <section className='h-[100vh] w-full font-netflix-medium text-white flex flex-col justify-center items-center px-[33px] z-0 relative'>
         <h1 className='font-netflixBlack font-bold text-[30px] sm:text-5xl xl:text-5xl text-center w-[99%] mt-40'>
           Películas, series ilimitadas y mucho más
@@ -30,12 +32,10 @@ function Landing () {
         <BeginContainer />
       </section>
       <section className='h-[100vh] bg-black text-gray-100 flex items-center justify-center relative border-t-8 border-gray-400/60 p-10'>
-        <div className='relative flex flex-col items-center lg:flex-row'>
+        <div className='relative flex flex-col items-center lg:flex-row h-[90%]'>
           <div className='flex flex-col items-center justify-center'>
-            <h2 className='mt-20 sm:mt-0 text-4xl lg:text-6xl  text-center lg:text-start text-gray-100  w-full '>
-              Disfruta en TV
-            </h2>
-            <p className='mt-10 text-sm sm:text-lg text-center  lg:text-start  py-5 w-full'>
+            <h2 className={title}>Disfruta en TV</h2>
+            <p className={parraf}>
               Ve en smart TV, PlayStation, Xbox, Chromecast, Apple TV,
               reproductores de Blu-ray y más.
             </p>
@@ -56,11 +56,9 @@ function Landing () {
         </div>
       </section>
       <section className='h-[100vh]  bg-black text-gray-100  lg:flex-row flex flex-col items-center justify-center relative border-t-8 border-gray-400/60 p-10 font-netflix-medium'>
-        <div className='lg:absolute lg:right-0  lg:w-[50vw] flex flex-col justify-center items-center w-full '>
-          <h3 className='mt-20 lg:mt-0 text-4xl sm:text-5xl  text-center lg:text-start text-gray-100 pr-6 '>
-            Descarga tus series para verlas offline
-          </h3>
-          <p className='text-center lg:text-start mt-10 w-full'>
+        <div className='lg:absolute lg:right-0  lg:w-[50vw] flex flex-col justify-center items-center w-full h-[95%] '>
+          <h3 className={title}>Descarga tus series para verlas offline</h3>
+          <p className={parraf}>
             Guarda tu contenido favorito y tendrás siempre algo para ver.
           </p>
         </div>
@@ -87,16 +85,14 @@ function Landing () {
       </section>
       <section className='h-[100vh] bg-black text-gray-100 flex items-center justify-center relative border-t-8 border-gray-400/60 p-10'>
         <div className='relative flex flex-col items-center lg:flex-row'>
-          <div className='flex flex-col items-center justify-center pl-10'>
-            <h2 className='mt-20 lg:mt-0 text-4xl sm:text-5xl  text-center lg:text-start text-gray-100 w-full  '>
-              Disfruta donde quieras
-            </h2>
-            <p className='mt-10 text-xl text-center w-full lg:text-start  '>
+          <div className='flex flex-col items-center justify-center mt-10'>
+            <h2 className={title}>Disfruta donde quieras</h2>
+            <p className={parraf}>
               Películas y series ilimitadas en tu teléfono, tablet, computadora
               y TV.
             </p>
           </div>
-          <div className='relative flex justify-center items-center h-[50vh] lg:w-[50vw] mt-10 lg:mt-0'>
+          <div className='relative flex justify-center items-center h-[50vh] lg:w-[50vw]  lg:mt-0'>
             <img
               alt=''
               src='https://assets.nflxext.com/ffe/siteui/acquisition/ourStory/fuji/desktop/device-pile.png'
@@ -120,10 +116,8 @@ function Landing () {
       </section>
       <section className='h-[100vh]  bg-black text-gray-100  lg:flex-row flex flex-col items-center justify-center relative border-t-8 border-gray-400/60 p-10 font-netflix-medium'>
         <div className='lg:absolute lg:right-0 lg:w-[50vw] flex flex-col w-full items-center lg:pr-10'>
-          <h3 className='mt-20 lg:mt-0 text-4xl sm:text-5xl xl:text-6xl text-center lg:text-start text-gray-100  '>
-            Crea perfiles para niños
-          </h3>
-          <p className='text-center lg:text-start mt-10 pl-2'>
+          <h3 className={title}>Crea perfiles para niños</h3>
+          <p className={parraf}>
             Los niños vivirán aventuras con sus personajes favoritos en un
             espacio diseñado exclusivamente para ellos, sin costo con tu
             membresía.
